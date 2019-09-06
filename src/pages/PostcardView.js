@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
+const countries = ["island1", "island2", "island3"];
+
 const PostcardView = () => {
   const [sendee, setSendee] = useState("");
+  const [country, setCountry] = useState("");
 
   return (
     <div>
@@ -18,6 +21,23 @@ const PostcardView = () => {
             onChange={e => setSendee(e.target.value)}
           />
         </label>
+
+        <label htmlFor="country">
+          Country:
+          <select
+            name="country"
+            id="country"
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+            onBlur={e => setCountry(e.target.value)}
+          >
+            <option>Post Office</option>
+            {countries.map(country => (
+              <option value={country}>{country}</option>
+            ))}
+          </select>
+        </label>
+
         <button>Submit</button>
       </form>
     </div>

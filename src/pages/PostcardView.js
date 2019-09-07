@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import useDropdown from "../components/hooks/useDropdown";
 
-const countries = ["island1", "island2", "island3"];
+// Data
+// const COUNTRIES = ["island1", "island2", "island3"];
 
 const PostcardView = () => {
   const [sendee, setSendee] = useState("");
-  const [country, setCountry] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [country, CountryDropdown] = useDropdown("Country", "", countries);
 
   return (
     <div>
@@ -21,23 +24,7 @@ const PostcardView = () => {
             onChange={e => setSendee(e.target.value)}
           />
         </label>
-
-        <label htmlFor="country">
-          Country:
-          <select
-            name="country"
-            id="country"
-            value={country}
-            onChange={e => setCountry(e.target.value)}
-            onBlur={e => setCountry(e.target.value)}
-          >
-            <option>Post Office</option>
-            {countries.map(country => (
-              <option value={country}>{country}</option>
-            ))}
-          </select>
-        </label>
-
+        <CountryDropdown />
         <button>Submit</button>
       </form>
     </div>

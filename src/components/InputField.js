@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const InputField = ({ label, defaultState, placeholder = "" }) => {
+const InputField = ({
+  label,
+  defaultState,
+  placeholder = "",
+  type = "text"
+}) => {
   const [state, setState] = useState(defaultState);
   const id = `use-field-${label.replace(" ", "").toLowerCase()}`;
 
@@ -8,7 +13,7 @@ const InputField = ({ label, defaultState, placeholder = "" }) => {
     <label htmlFor={id}>
       {label}:
       <input
-        type="text"
+        type={type}
         name={id}
         id={id}
         placeholder={placeholder}
